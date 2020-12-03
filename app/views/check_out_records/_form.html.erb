@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-xl-12 order-xl-1">
+    <div class="card">
+      <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0"><%= I18n.t('check_out_records.check_out_details') %></h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <%= form_with(model: @check_out_record, local: true) do |form| %>
+          <%= form.hidden_field :customer_id, :value => form.object[:customer_id] %>
+          <div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="date"><%= form.label :date %></label><br>
+                  <%= form.text_field :date, :class => 'datepicker' %>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="room"><%= form.label :room_id %></label><br>
+                  <%= form.select(:room_id, @rooms.collect{ |u| [u.room_no, u.id] }, {:include_blank => I18n.t('rooms.rooms_text')},
+                                  {:onchange => "select_room(this)", :class => "chosen-select form-control"} ) %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="total_amount"><%= form.label :total_amount %></label><br>
+                  <%= form.number_field :total_amount, :value => form.object[:total_amount], :class => 'form-control', :readonly => true %>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="customer_name"><%= I18n.t('customers.customer_name') %></label><br>
+                  <%= text_field_tag :customer_name, '', :value => params[:customer_name], :class => 'form-control', :readonly => true %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="total_days"><%= form.label :total_days %></label><br>
+                  <%= form.number_field :total_days, :class => 'form-control', :readonly => true %>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="reason"><%= form.label :reason %></label><br>
+                  <%= form.text_area :reason, :class => 'form-control' %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="pl-lg-3 pt-3">
+              <%= form.submit I18n.t('submit'), class: "btn btn-primary float-left", data: {disable_with: I18n.t('please_wait')} %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $('.datepicker').datepicker()
+
+    select_room = function (elem) {
+        $.ajax({
+            url: "/check_out_records/select_room",
+            data: {
+                room_id: $(elem).val()
+            },
+            beforeSend: function( xhr ) {
+
+            },
+            success:function(data) {
+              $("#check_out_record_total_amount").val(data.total_amount);
+              $("#check_out_record_total_days").val(data.days);
+              $("#check_out_record_customer_id").val(data.customer_id);
+              $("#customer_name").val(data.customer_name);
+            },
+            error: function (textStatus, errorThrown) {
+
+
+            }
+        });
+    }
+</script>

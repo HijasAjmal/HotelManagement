@@ -1,0 +1,2 @@
+module CheckInRecordsHelper
+end

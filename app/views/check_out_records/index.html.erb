@@ -1,0 +1,58 @@
+<% if @check_out_records.present? %>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><%= I18n.t('check_out_records.check_out_records') %></h3>
+            </div>
+            <div class="col text-right">
+              <%= link_to I18n.t('check_out_records.new_check_out_record'), new_check_out_record_path, class: "btn btn-sm btn-primary" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th><%= I18n.t('check_out_date') %></th>
+              <th><%= I18n.t('rooms.room_no') %></th>
+              <th><%= I18n.t('customer_name') %></th>
+              <th><%= I18n.t('total_amount') %></th>
+              <th><%= I18n.t('total_days') %></th>
+              <th><%= I18n.t('reason') %></th>
+              <th><%= I18n.t('options') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @check_out_records.each do |checkout| %>
+              <tr>
+                <td><%= checkout.date %></td>
+                <td><%= checkout.room.room_no %></td>
+                <td><%= checkout.customer.full_name %></td>
+                <td><%= checkout.total_amount %></td>
+                <td><%= checkout.total_days %></td>
+                <td><%= checkout.reason %></td>
+                <td>
+                  <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <%= link_to I18n.t('edit'), edit_check_out_record_path(checkout), :class => "text-dark dropdown-item" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= render "layouts/notifier", params: {link: (link_to I18n.t('check_out_records.new_check_out_record'), new_check_out_record_path, class: "btn btn-sm btn-primary")} %>
+<% end %>

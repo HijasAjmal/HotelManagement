@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HotelManagement</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag controller_name, media: 'all' if asset_present?("#{controller_name}.scss") %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%# dependencies for multi_select %>
+    <script src="http://harvesthq.github.io/chosen/chosen.jquery.js"></script>
+
+  </head>
+
+  <body>
+
+    <%= render "layouts/side_menu" %>
+
+    <div class="main-content" id="panel">
+      <%= render "layouts/navigation" %>
+      <% if flash.present? %>
+        <% flash.each do |name, msg| %>
+          <% if msg.is_a?(String) %>
+            <div class="container ml-md-5">
+              <div id="snackbar" class="bg-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+                <div class="close">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <div class="p-3" style="min-height: 100vh">
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<script type="text/javascript">
+    // snack bar functionality
+    $("#snackbar").addClass("show")
+    setTimeout(function () {
+        $("#snackbar").removeClass("show")
+    }, 10000);
+    $("#snackbar .close").click(function () {
+        $("#snackbar").removeClass("show")
+    });
+</script>

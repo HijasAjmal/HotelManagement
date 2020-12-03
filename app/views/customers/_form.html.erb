@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-xl-12 order-xl-1">
+    <div class="card">
+      <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0"><%= I18n.t('customers.customer_details') %></h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <%= form_with(model: customer, local: true) do |form| %>
+          <%= form.hidden_field :room_id, :value => @customer.check_in_record.room_id %>
+          <div class="pl-lg-6">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="first_name"><%= form.label :first_name %></label>
+                  <%= form.text_field :first_name, type: "text", id: "first_name", class: "form-control", placeholder: I18n.t('first_name') %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="middle_name"><%= form.label :middle_name %></label>
+                  <%= form.text_field :middle_name, type: "text", id: "middle_name", class: "form-control", placeholder: I18n.t('middle_name') %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="last_name"><%= form.label :last_name %></label>
+                  <%= form.text_field :last_name, type: "text", id: "last_name", class: "form-control", placeholder: I18n.t('last_name') %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="address"><%= form.label :address %></label>
+                  <%= form.text_area :address, type: "text", id: "address", class: "form-control", placeholder: I18n.t('address') %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="phone"><%= form.label :phone %></label>
+                  <%= form.text_field :phone, type: "text", id: "phone", class: "form-control", placeholder: I18n.t('phone') %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="email"><%= form.label :email %></label>
+                  <%= form.text_field :email, type: "text", id: "email", class: "form-control", placeholder: I18n.t('email') %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="gender"><%= form.label :gender %></label>
+                  <%= form.select(:gender, [["Male", 1], ["Female", 2]], {:include_blank => I18n.t('gender'), :selected => @customer.gender}, {:class => "chosen-select form-control"} ) %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="age"><%= form.label :age %></label>
+                  <%= form.number_field :age, type: "text", id: "age", class: "form-control", placeholder: I18n.t('age') %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="material_status"><%= form.label :status %></label>
+                  <%= form.select(:status, [["Married", 1], ["Single", 2]], {:include_blank => I18n.t('check_in_records.material_status'), :selected => @customer.status}, {:class => "chosen-select form-control"} ) %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="pl-lg-3 pt-3">
+                <%= form.submit I18n.t('submit'), class: "btn btn-primary float-left", data: {disable_with: I18n.t('please_wait')} %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

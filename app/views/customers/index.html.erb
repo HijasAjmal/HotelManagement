@@ -1,0 +1,69 @@
+ <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><%= I18n.t('customers.customers') %></h3>
+            </div>
+          </div>
+        </div>
+
+        <%= form_for :customer, :url => {:controller => :customers, :action => :search_customer}, :html => {:remote => true, :class => "form-inline d-flex justify-content-center w-25 mb-md-3 float-right"} do |f| %>
+          <div class="w-100">
+            <%= f.text_field :query, {:class => "form-control form-control-sm ml-3 w-50", :placeholder => "Search"} %>
+            <%= submit_tag I18n.t('search'), class: "btn btn-primary search_btn", data: {disable_with: I18n.t('please_wait')} %>
+          </div>
+
+        <% end %>
+
+
+        <% if @customers.present? %>
+          <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+              <tr>
+                <th><%= I18n.t('first_name') %></th>
+                <th><%= I18n.t('middle_name') %></th>
+                <th><%= I18n.t('last_name') %></th>
+                <th><%= I18n.t('address') %></th>
+                <th><%= I18n.t('phone') %></th>
+                <th><%= I18n.t('email') %></th>
+                <th><%= I18n.t('gender') %></th>
+                <th><%= I18n.t('age') %></th>
+                <th><%= I18n.t('status') %></th>
+                <th><%= I18n.t('options') %></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @customers.each do |customer| %>
+                <tr>
+                  <td><%= customer.first_name %></td>
+                  <td><%= customer.middle_name %></td>
+                  <td><%= customer.last_name %></td>
+                  <td><%= customer.address %></td>
+                  <td><%= customer.phone %></td>
+                  <td><%= customer.email %></td>
+                  <td><%= customer.gender == 1 ? I18n.t('male') : I18n.t('female') %></td>
+                  <td><%= customer.age %></td>
+                  <td><%= customer.status == 1 ? I18n.t('married') : I18n.t('single') %></td>
+                  <td>
+                    <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <%= link_to I18n.t('edit'), edit_customer_path(customer), :class => "text-dark dropdown-item" %>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="digg_pagination float-right mr-md-4">
+            <%= will_paginate @rooms, :container => false %>
+          </div>
+         <% end %>
+      </div>
+    </div>
+  </div>

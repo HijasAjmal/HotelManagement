@@ -1,0 +1,25 @@
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "align_to_page_center form-forgot" }) do |f| %>
+  <h2 class="text-center"><%= I18n.t('devise.passwords.change_password') %></h2>
+  <%= f.hidden_field :reset_password_token %>
+
+  <div class="field">
+    <%= f.label :password, I18n.t('devise.passwords.new_password') %><br />
+    <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+    <% end %>
+    <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, I18n.t('devise.passwords.confirm_new_password') %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <br>
+
+  <div class="actions">
+    <%= f.submit I18n.t('devise.passwords.update_password'), class: "btn btn-lg btn-primary btn-block" %>
+  </div>
+
+  <%= render "users/shared/links" %>
+<% end %>

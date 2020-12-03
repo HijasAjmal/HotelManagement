@@ -1,0 +1,56 @@
+<% if @rooms.present? %>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><%= I18n.t('rooms.rooms_text') %></h3>
+            </div>
+            <div class="col text-right">
+              <%= link_to I18n.t('rooms.new_room'), new_room_path, class: "btn btn-sm btn-primary" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th><%= I18n.t('rooms.room_no') %></th>
+              <th><%= I18n.t('rooms.room_type') %></th>
+              <th><%= I18n.t('rooms.rent_per_day') %></th>
+              <th><%= I18n.t('available') %></th>
+              <th><%= I18n.t('options') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @rooms.each do |room| %>
+              <tr>
+                <td><%= room.room_no %></td>
+                <td><%= room.room_type.name %></td>
+                <td><%= room.rent %></td>
+                <td><%= room.is_available ? I18n.t('yes_text') : I18n.t('no_text') %></td>
+                <td>
+                  <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <%= link_to I18n.t('edit'), edit_room_path(room), :class => "text-dark dropdown-item" %>
+                    <%= link_to I18n.t('delete'), room, method: :delete, data: {confirm: I18n.t('delete_confirmation_message'), commit: I18n.t('sure'), backdrop: 'static'}, :class => "text-dark dropdown-item" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+          <div class="digg_pagination float-right mr-md-4">
+            <%= will_paginate @rooms, :container => false %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= render "layouts/notifier", params: {link: (link_to I18n.t('rooms.new_room'), new_room_path, class: "btn btn-sm btn-primary")} %>
+<% end %>

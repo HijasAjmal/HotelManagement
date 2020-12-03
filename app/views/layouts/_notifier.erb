@@ -1,0 +1,10 @@
+<div class="align_to_page_center">
+  <div class="card w-50 align_to_page_center align-items-center">
+    <div class="card-header border-0">
+      <div class="row align-items-center">
+        <h2><%= params[:message].present? ? params[:message] : I18n.t('no_records_found') %></h2>
+      </div>
+        <%= params[:link].present? ? params[:link] : nil %>
+    </div>
+  </div>
+</div>

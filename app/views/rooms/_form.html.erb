@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xl-12 order-xl-1">
+    <div class="card">
+      <div class="card-header">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <h3 class="mb-0"><%= I18n.t('rooms.room_details') %></h3>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <%= form_with(model: room, local: true) do |form| %>
+          <div class="pl-lg-4">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="room_no"><%= form.label :room_no %></label>
+                  <%= form.text_field :room_no, type: "text", id: "room_no", class: "form-control", placeholder: I18n.t('rooms.room_no') %>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="room_type_id"><%= form.label :room_type %></label>
+                  <%= form.select(:room_type_id, @room_types.collect{ |u| [u.name, u.id] }, {:include_blank => I18n.t('rooms.room_types')}, {:class => "chosen-select form-control"} ) %>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="rent"><%= I18n.t('rooms.rent_per_day') %></label>
+                  <%= form.text_field :rent, type: "number", id: "rent", class: "form-control", placeholder: I18n.t('rooms.rent_per_day') %>
+                </div>
+              </div>
+
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="form-control-label" for="availabilty"><%= I18n.t('available') %></label><br>
+                  <%= form.check_box :is_available %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pl-lg-4">
+            <%= form.submit I18n.t('submit'), class: "btn btn-primary float-left", data: {disable_with: I18n.t('please_wait')} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

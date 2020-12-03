@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @check_out_record.date %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @check_out_record.room_id %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @check_out_record.customer_id %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @check_out_record.total_amount %>
+</p>
+
+<p>
+  <strong>Total days:</strong>
+  <%= @check_out_record.total_days %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @check_out_record.reason %>
+</p>
+
+<%= link_to 'Edit', edit_check_out_record_path(@check_out_record) %> |
+<%= link_to 'Back', check_out_records_path %>

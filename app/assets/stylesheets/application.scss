@@ -1,0 +1,91 @@
+@import "bootstrap/scss/bootstrap";
+@import "custom_stylesheet";
+@import '@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+.align_to_page_center {
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+
+
+/* snack bar style section begin */
+#snackbar {
+    visibility: hidden;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    width:80%;
+    top: 100px;
+    box-shadow: 0px 0px 15px 10px grey;
+}
+#snackbar .close {
+    float:right;
+    color: black;
+    z-index: 1;
+    opacity: 0.6;
+    margin-top: -15px;
+    margin-right: 23px;
+}
+#snackbar .second {
+    border-left: 1px solid #FF0000
+}
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s;
+    animation: fadein 0.5s;
+}
+#snackbar.hide {
+    -webkit-animation: fadeout 0.5s 2.5s;
+    animation: fadeout 0.5s 2.5s;
+}
+@-webkit-keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 100px; opacity: 1;}
+}
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 100px; opacity: 1;}
+}
+@-webkit-keyframes fadeout {
+    from {top: 100px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+@keyframes fadeout {
+    from {top: 100px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+}
+/* snack bar style section end */
+
+
+.bootstrap-datetimepicker-widget {
+  width: 100% !important;
+}
+
+
+.search_btn {
+  height: 29px;
+  width: 58px;
+  font-size: 9px;
+  padding: 0 0 0 0;
+}
+
+.main-link {
+  background-color: #797979;
+}
+
+.sidenav-header {
+  padding: 9px;
+}
+
+.sidenav-header h1 {
+  font-size: 25px !important;
+}

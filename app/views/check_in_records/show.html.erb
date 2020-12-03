@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @check_in_record.date %>
+</p>
+
+<p>
+  <strong>Room:</strong>
+  <%= @check_in_record.room_id %>
+</p>
+
+<%= link_to 'Edit', edit_check_in_record_path(@check_in_record) %> |
+<%= link_to 'Back', check_in_records_path %>

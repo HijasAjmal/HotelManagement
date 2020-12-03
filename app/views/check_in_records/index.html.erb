@@ -1,0 +1,56 @@
+<% if @check_in_records.present? %>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><%= I18n.t('check_in_records.check_in_records') %></h3>
+            </div>
+            <div class="col text-right">
+              <%= link_to I18n.t('check_in_records.new_check_in'), new_check_in_record_path, class: "btn btn-sm btn-primary" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+            <tr>
+              <th><%= I18n.t('check_in_date') %></th>
+              <th><%= I18n.t('rooms.room_no') %></th>
+              <th><%= I18n.t('customer_name') %></th>
+              <th><%= I18n.t('phone') %></th>
+              <th><%= I18n.t('options') %></th>
+            </tr>
+            </thead>
+            <tbody>
+            <% @check_in_records.each do |check_in_record| %>
+              <tr>
+                <td><%= check_in_record.date %></td>
+                <td><%= check_in_record.room.room_no %></td>
+                <td><%= check_in_record.customer.full_name %></td>
+                <td><%= check_in_record.customer.phone %></td>
+                <td>
+                  <a class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <%= link_to I18n.t('edit'), edit_check_in_record_path(check_in_record), :class => "text-dark dropdown-item" %>
+                    <%= link_to I18n.t('delete'), check_in_record, method: :delete, data: {confirm: I18n.t('delete_confirmation_message'), commit: I18n.t('sure'), backdrop: 'static'}, :class => "text-dark dropdown-item" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+          <div class="digg_pagination float-right mr-md-4">
+            <%= will_paginate @check_in_records, :container => false %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= render "layouts/notifier", params: {link: (link_to I18n.t('check_in_records.new_check_in'), new_check_in_record_path, class: "btn btn-sm btn-primary")} %>
+<% end %>

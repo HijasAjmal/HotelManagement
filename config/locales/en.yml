@@ -1,0 +1,98 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+
+  rooms:
+    rooms_text: "Rooms"
+    all_rooms: "All rooms"
+    new_room: "New room"
+    room_no: "Room no"
+    room_details: "Room details"
+    room_types: "Room types"
+    room_type: "Room type"
+    available_rooms: "Available rooms"
+    rent_per_day: "Rent per day"
+
+  check_in_records:
+    check_in_details: "Check in details"
+    material_status: "Material status"
+    check_in_records: "Check in records"
+    new_check_in: "New check in"
+    room_not_available: "Room is not available"
+
+  customers:
+    customers: "Customers"
+    customer_details: "Customer details"
+    customer_name: "Customer name"
+
+  check_out_records:
+    check_out_records: "Checkout records"
+    check_out_details: "Check out details"
+    check_out_date_error: "Date should not be less than current date"
+    room_availability_error: "Selected room is currently available, please select correct one to proceed"
+    new_check_out_record: "New checkout record"
+
+
+  # general use
+  no_records_found: "No records found"
+  submit: "Submit"
+  please_wait: "Please wait"
+  available: "Available"
+  options: "Options"
+  edit: "Edit"
+  delete: "Delete"
+  yes_text: "Yes"
+  no_text: "No"
+  delete_confirmation_message: "Are you sure want to delete"
+  sure: "Sure"
+  gender: "Gender"
+  customer_name: "Customer name"
+  phone: "Phone"
+  check_in_date: "Check in Date"
+  check_out_date: "Check out Date"
+  first_name: "First name"
+  middle_name: "Middle name"
+  last_name: "Last name"
+  status: "Status"
+  address: "Address"
+  email: "Email"
+  age: "Age"
+  male: "Male"
+  female: "Female"
+  singel: "Single"
+  married: "Married"
+  total_amount: "Total amount"
+  total_days: "Total days"
+  reason: "Reason"
+  search: "Search"
+
